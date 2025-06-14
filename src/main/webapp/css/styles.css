@@ -44,7 +44,7 @@ a {
     background: rgba(88, 188, 174, 0.68);
     padding: 10px;
     border-radius: 3px;
-    margin: 0px 10px 10px;
+    margin: 0 10px 10px;
 }
 
 .link-button:hover {
@@ -52,11 +52,12 @@ a {
 }
 
 .form-element-wrapper {
-    margin: 0px 20px 0px;
-    padding: 10px 0px 10px;
+    margin: 0 20px 0;
+    padding: 10px 0 10px;
 }
 
-.form-element-wrapper p {
+.form-element-wrapper label {
+    display: inline-block;
     font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 300;
@@ -86,9 +87,9 @@ a {
     text-align: center;
     color: rgb(79, 79, 79);
     background: rgba(88, 188, 174, 0.68);
-    padding: 10px 0px;
+    padding: 10px 0;
     border-radius: 3px;
-    margin: 0px 0px 10px;
+    margin: 0 0 10px;
     width: 100%;
     box-sizing: border-box;
     border: none;

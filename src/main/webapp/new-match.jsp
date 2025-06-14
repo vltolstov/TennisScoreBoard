@@ -18,12 +18,12 @@
             <div class="main-block">
                 <form>
                     <div class="form-element-wrapper">
-                        <p>Игрок №1</p>
-                        <input type="text" placeholder="Введите имя">
+                        <label for="player-one-name">Игрок №1</label>
+                        <input type="text" name="player-one-name" id="player-one-name" placeholder="Введите имя">
                     </div>
                     <div class="form-element-wrapper">
-                        <p>Игрок №2</p>
-                        <input type="text" placeholder="Введите имя">
+                        <label for="player-two-name">Игрок №2</label>
+                        <input type="text" name="player-two-name" id="player-two-name" placeholder="Введите имя">
                     </div>
                     <div class="form-element-wrapper">
                         <button class="start-button" type="submit">Начать матч</button>
