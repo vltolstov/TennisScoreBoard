@@ -12,10 +12,11 @@
     font-size: 18px;
     font-weight: 300;
     text-align: center;
+    color: rgb(79, 79, 79);
     padding-bottom: 25px;
 }
 
-.index-main-block {
+.main-block {
     display: flex;
     min-width: 300px;
     max-width: 450px;
@@ -23,7 +24,7 @@
     background: rgb(254, 254, 254);
     border: 1px solid #EBEBEB;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px 10px 10px 10px;
     flex-direction: column;
     justify-content: center;
     outline: 5px solid #fbfbfb;
@@ -50,6 +51,53 @@ a {
     background: rgba(108, 218, 202, 0.7);
 }
 
+.form-element-wrapper {
+    margin: 0px 20px 0px;
+    padding: 10px 0px 10px;
+}
+
+.form-element-wrapper p {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgb(79, 79, 79);
+    padding-bottom: 10px;
+}
+
+.form-element-wrapper input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    color: rgb(79, 79, 79);
+    border: 1px solid #EBEBEB;
+    border-radius: 5px;
+}
+
+.form-element-wrapper input::placeholder {
+    color: #CCC;
+}
+
+.start-button {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: center;
+    color: rgb(79, 79, 79);
+    background: rgba(88, 188, 174, 0.68);
+    padding: 10px 0px;
+    border-radius: 3px;
+    margin: 0px 0px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+}
+
+.start-button:hover {
+    cursor: pointer;
+    background: rgba(108, 218, 202, 0.7);
+}
 
 
 
