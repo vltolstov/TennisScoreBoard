@@ -15,7 +15,7 @@
     <div class="page-center-wrapper">
         <div class="page-center">
             <p class="page-header">Табло теннисного матча</p>
-            <div class="indexMainBlock">
+            <div class="index-main-block">
                 <a href="/start-new-match" class="link-button">Начать новый матч</a>
                 <a href="/match-results" class="link-button">Итоги матчей</a>
             </div>
