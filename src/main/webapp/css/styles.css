@@ -231,5 +231,58 @@ a {
     height: 40px;
 }
 
+.score {
+    margin: 0 20px;
+}
+
+.score-table {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgb(79, 79, 79);
+    margin: 10px 0;
+}
+
+.score-table tr th {
+    padding: 5px 20px 10px 20px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.score-table tr td {
+    padding: 8px 5px;
+    text-align: center;
+}
+
+.match-commands {
+    border-top: 1px solid #EBEBEB;
+    padding: 15px 0px;
+    margin: 0 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.match-commands form {
+    flex: 1 1 0;
+}
+
+.match-commands form button {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    color: rgb(79, 79, 79);
+    background: rgba(88, 188, 174, 0.68);
+    padding: 10px 15px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: none;
+    margin: 0px 5px;
+}
+
+.match-commands form button:hover {
+    cursor: pointer;
+    background: rgba(108, 218, 202, 0.7);
+}
 
 
