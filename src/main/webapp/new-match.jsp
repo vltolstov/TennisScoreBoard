@@ -32,5 +32,8 @@
             </div>
         </div>
     </div>
+    <div class="go-home">
+        <a href="${pageContext.request.contextPath}"><img src="images/home.svg"></a>
+    </div>
 </body>
 </html>
