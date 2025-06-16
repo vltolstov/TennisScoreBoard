@@ -15,8 +15,13 @@
     <div class="page-center-wrapper">
         <div class="page-center">
             <p class="page-header">Новый матч</p>
+            <% String error = (String) request.getAttribute("error"); %>
+            <% if (error != null) { %>
+            <p style="color:red;"><%= error %></p>
+            <% } %>
             <div class="main-block">
-                <form>
+                <form method="POST" action="new-match">
+
                     <div class="form-element-wrapper">
                         <label for="player-one-name">Игрок №1</label>
                         <input type="text" name="player-one-name" id="player-one-name" placeholder="Введите имя">
