@@ -11,11 +11,11 @@ public class ValidationUtils {
         String playerTwoName = newMatchRequestDto.getPlayerTwoName();
 
         if(playerOneName == null || playerOneName.isBlank()){
-            throw new PlayerNameException("Имя игрока №1 не может быть пустым");
+            throw new PlayerNameException("Player №1 name can not be blank");
         }
 
         if(playerTwoName == null || playerTwoName.isBlank()){
-            throw new PlayerNameException("Имя игрока №2 не может быть пустым");
+            throw new PlayerNameException("Player №2 name can not be blank");
         }
 
     }
