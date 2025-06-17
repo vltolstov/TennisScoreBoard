@@ -1,5 +1,6 @@
 package filters;
 
+import exceptions.DatabaseOperationException;
 import exceptions.PlayerNameException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -19,6 +20,10 @@ public class NewMatchFormFilter extends HttpFilter {
             super.doFilter(request, response, chain);
         }
         catch (PlayerNameException e){
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("new-match.jsp").forward(request, response);
+        }
+        catch (DatabaseOperationException e){
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("new-match.jsp").forward(request, response);
         }
