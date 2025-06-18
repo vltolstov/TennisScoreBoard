@@ -26,6 +26,9 @@ public class Match {
     @JoinColumn(name = "player2", referencedColumnName = "id")
     private Player playerTwo;
 
+    @JoinColumn(name = "score")
+    private String score;
+
     @ManyToOne
     @JoinColumn(name = "winner", referencedColumnName = "id")
     private Player winner;
