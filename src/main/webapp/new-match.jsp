@@ -17,7 +17,7 @@
             <p class="page-header">Новый матч</p>
             <% String error = (String) request.getAttribute("error"); %>
             <% if (error != null) { %>
-            <p style="color:red;"><%= error %></p>
+            <p class="error"><%= error %></p>
             <% } %>
             <div class="main-block">
                 <form method="POST" action="new-match">

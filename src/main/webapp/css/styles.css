@@ -40,6 +40,16 @@ a {
     text-decoration: none;
 }
 
+.error {
+    min-width: 300px;
+    max-width: 550px;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: red;
+}
+
 .link-button {
     background: rgba(88, 188, 174, 0.68);
     padding: 10px;
