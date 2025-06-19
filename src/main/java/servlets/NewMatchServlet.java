@@ -9,12 +9,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.Match;
 import models.Player;
+import services.OngoingMatchesService;
 import utils.MappingUtils;
 import utils.ValidationUtils;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @WebServlet("/new-match")
 public class NewMatchServlet extends HttpServlet {
@@ -42,12 +45,14 @@ public class NewMatchServlet extends HttpServlet {
         Player playerOne = playerDao.save(MappingUtils.convertToEntity(playerOneDto));
         Player playerTwo = playerDao.save(MappingUtils.convertToEntity(playerTwoDto));
 
+        UUID uuid = UUID.randomUUID();
 
+        Match match = new Match();
+        match.setPlayerOne(playerOne);
+        match.setPlayerTwo(playerTwo);
 
-//        List<Player> playerFromDb = playerDao.findAll();
-//        System.out.println(playerFromDb);
-//        создаем матч
+        OngoingMatchesService.addMatch(uuid, match);
 
-        response.sendRedirect("match-score.jsp");
+        response.sendRedirect("match-score.jsp" + "?uuid=" + uuid.toString());
     }
 }
