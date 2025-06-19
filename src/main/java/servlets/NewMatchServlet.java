@@ -53,6 +53,6 @@ public class NewMatchServlet extends HttpServlet {
 
         OngoingMatchesService.addMatch(uuid, match);
 
-        response.sendRedirect("match-score.jsp" + "?uuid=" + uuid.toString());
+        response.sendRedirect("match-score" + "?uuid=" + uuid.toString());
     }
 }
