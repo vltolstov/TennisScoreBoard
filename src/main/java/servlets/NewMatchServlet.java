@@ -16,7 +16,6 @@ import utils.MappingUtils;
 import utils.ValidationUtils;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 @WebServlet("/new-match")
@@ -53,6 +52,6 @@ public class NewMatchServlet extends HttpServlet {
 
         OngoingMatchesService.addMatch(uuid, match);
 
-        response.sendRedirect("match-score" + "?uuid=" + uuid.toString());
+        response.sendRedirect("match-score" + "?uuid=" + uuid);
     }
 }

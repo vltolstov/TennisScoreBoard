@@ -19,11 +19,7 @@ public class NewMatchFormFilter extends HttpFilter {
         try {
             super.doFilter(request, response, chain);
         }
-        catch (PlayerNameException e){
-            request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("new-match.jsp").forward(request, response);
-        }
-        catch (DatabaseOperationException e){
+        catch (PlayerNameException | DatabaseOperationException e){
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("new-match.jsp").forward(request, response);
         }
