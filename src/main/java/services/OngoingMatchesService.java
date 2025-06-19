@@ -8,23 +8,19 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 public final class OngoingMatchesService {
 
-    private static final Map<Integer, Match> ongoingMatches = Collections.synchronizedMap(new HashMap<>());
+    private static final Map<UUID, Match> ongoingMatches = Collections.synchronizedMap(new HashMap<>());
 
     private OngoingMatchesService() {}
 
-    public static void addMatch(Match match) {
-
+    public static void addMatch(UUID uuid, Match match) {
+        ongoingMatches.put(uuid, match);
     }
 
-    public static void getMatch (String matchUuid) {
-
+    public static Match getMatch (UUID uuid) {
+        return ongoingMatches.get(uuid);
     }
-
-    private Integer generateUuid(){
-        return 0;
-    }
-
 }
