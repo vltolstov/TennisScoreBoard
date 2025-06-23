@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Матч: Игрок1 vs Игрок2</title>
+    <title>Матч: ${match.playerOne.name} vs ${match.playerTwo.name}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="css/default.css">
@@ -14,7 +14,7 @@
 <body>
     <div class="page-center-wrapper">
         <div class="page-center">
-            <p class="page-header">Матч: Игрок1 vs Игрок2</p>
+            <p class="page-header">Матч: ${match.playerOne.name} vs ${match.playerTwo.name}</p>
             <div class="main-block">
                 <div class="score">
                     <table class="score-table">
@@ -25,25 +25,27 @@
                             <th>Points</th>
                         </tr>
                         <tr>
-                            <td>Player1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td>${match.playerOne.name}</td>
+                            <td class="player-one-sets">${match.score.playerOneSets}</td>
+                            <td class="player-one-games">${match.score.playerOneGames}</td>
+                            <td class="player-one-points">${match.score.playerOnePoints}</td>
                         </tr>
                         <tr>
-                            <td>Player2</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td>${match.playerTwo.name}</td>
+                            <td class="player-two-sets">${match.score.playerTwoSets}</td>
+                            <td class="player-two-games">${match.score.playerTwoGames}</td>
+                            <td class="player-two-points">${match.score.playerTwoPoints}</td>
                         </tr>
                     </table>
                 </div>
                 <div class="match-commands">
-                    <form>
-                        <button type="submit">Выигрывает Игрок №1</button>
+                    <form method="POST" action="match-score?uuid=${uuid}">
+                        <input type="hidden" name="player-id" value="${match.playerOne.id}">
+                        <button type="submit">Выигрывает ${match.playerOne.name}</button>
                     </form>
-                    <form>
-                        <button type="submit">Выигрывает Игрок №2</button>
+                    <form method="POST" action="match-score?uuid=${uuid}">
+                        <input type="hidden" name="player-id" value="${match.playerTwo.id}">
+                        <button type="submit">Выигрывает ${match.playerTwo.name}</button>
                     </form>
                 </div>
             </div>
