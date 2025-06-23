@@ -26,8 +26,9 @@ public class Match {
     @JoinColumn(name = "player2", referencedColumnName = "id")
     private Player playerTwo;
 
+    @Embedded
     @JoinColumn(name = "score")
-    private String score;
+    private Score score = new Score();
 
     @ManyToOne
     @JoinColumn(name = "winner", referencedColumnName = "id")
