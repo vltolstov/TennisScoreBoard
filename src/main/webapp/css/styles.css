@@ -276,7 +276,7 @@ a {
     flex: 1 1 0;
 }
 
-.match-commands form button {
+.match-commands button {
     font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 300;
@@ -290,7 +290,7 @@ a {
     margin: 0px 5px;
 }
 
-.match-commands form button:hover {
+.match-commands button:hover {
     cursor: pointer;
     background: rgba(108, 218, 202, 0.7);
 }
