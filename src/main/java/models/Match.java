@@ -19,12 +19,12 @@ public class Match {
     @Column(name = "player1")
     @ManyToOne
     @JoinColumn(name = "player1", referencedColumnName = "id")
-    private Player playerOne;
+    private Player firstPlayer;
 
     @Column(name = "player2")
     @ManyToOne
     @JoinColumn(name = "player2", referencedColumnName = "id")
-    private Player playerTwo;
+    private Player secondPlayer;
 
     @Embedded
     @JoinColumn(name = "score")

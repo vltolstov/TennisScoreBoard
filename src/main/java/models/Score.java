@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @Embeddable
 public class Score {
 
-    private int playerOneSets;
-    private int playerTwoSets;
-    private int playerOneGames;
-    private int playerTwoGames;
-    private int playerOnePoints;
-    private int playerTwoPoints;
+    private int firstPlayerSets;
+    private int firstPlayerGames;
+    private int firstPlayerPoints;
+    private int secondPlayerSets;
+    private int secondPlayerGames;
+    private int secondPlayerPoints;
 
 }

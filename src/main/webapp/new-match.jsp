@@ -23,12 +23,12 @@
                 <form method="POST" action="new-match">
 
                     <div class="form-element-wrapper">
-                        <label for="player-one-name">Игрок №1</label>
-                        <input type="text" name="player-one-name" id="player-one-name" placeholder="Введите имя">
+                        <label for="first-player-name">Игрок №1</label>
+                        <input type="text" name="first-player-name" id="first-player-name" placeholder="Введите имя">
                     </div>
                     <div class="form-element-wrapper">
-                        <label for="player-two-name">Игрок №2</label>
-                        <input type="text" name="player-two-name" id="player-two-name" placeholder="Введите имя">
+                        <label for="second-player-name">Игрок №2</label>
+                        <input type="text" name="second-player-name" id="second-player-name" placeholder="Введите имя">
                     </div>
                     <div class="form-element-wrapper">
                         <button class="start-button" type="submit">Начать матч</button>

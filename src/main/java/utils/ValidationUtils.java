@@ -7,14 +7,14 @@ public class ValidationUtils {
 
     public static void validate (NewMatchRequestDto newMatchRequestDto) {
 
-        String playerOneName = newMatchRequestDto.getPlayerOneName();
-        String playerTwoName = newMatchRequestDto.getPlayerTwoName();
+        String firstPlayerName = newMatchRequestDto.getFirstPlayerName();
+        String secondPlayerName = newMatchRequestDto.getSecondPlayerName();
 
-        if(playerOneName == null || playerOneName.isBlank()){
+        if(firstPlayerName == null || firstPlayerName.isBlank()){
             throw new PlayerNameException("Player №1 name can not be blank");
         }
 
-        if(playerTwoName == null || playerTwoName.isBlank()){
+        if(secondPlayerName == null || secondPlayerName.isBlank()){
             throw new PlayerNameException("Player №2 name can not be blank");
         }
 

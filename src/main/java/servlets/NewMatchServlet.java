@@ -31,24 +31,24 @@ public class NewMatchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String playerOneName = request.getParameter("player-one-name");
-        String playerTwoName = request.getParameter("player-two-name");
+        String firstPlayerName = request.getParameter("first-player-name");
+        String secondPlayerName = request.getParameter("second-player-name");
 
-        NewMatchRequestDto newMatchRequestDto = new NewMatchRequestDto(playerOneName, playerTwoName);
+        NewMatchRequestDto newMatchRequestDto = new NewMatchRequestDto(firstPlayerName, secondPlayerName);
 
         ValidationUtils.validate(newMatchRequestDto);
 
-        PlayerDto playerOneDto = new PlayerDto(playerOneName);
-        PlayerDto playerTwoDto = new PlayerDto(playerTwoName);
+        PlayerDto firstPlayerDto = new PlayerDto(firstPlayerName);
+        PlayerDto secondPlayerDto = new PlayerDto(secondPlayerName);
 
-        Player playerOne = playerDao.save(MappingUtils.convertToEntity(playerOneDto));
-        Player playerTwo = playerDao.save(MappingUtils.convertToEntity(playerTwoDto));
+        Player firstPlayer = playerDao.save(MappingUtils.convertToEntity(firstPlayerDto));
+        Player secondPlayer = playerDao.save(MappingUtils.convertToEntity(secondPlayerDto));
 
         UUID uuid = UUID.randomUUID();
 
         Match match = new Match();
-        match.setPlayerOne(playerOne);
-        match.setPlayerTwo(playerTwo);
+        match.setFirstPlayer(firstPlayer);
+        match.setSecondPlayer(secondPlayer);
 
         OngoingMatchesService.addMatch(uuid, match);
 
