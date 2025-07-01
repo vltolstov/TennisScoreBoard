@@ -1,0 +1,18 @@
+package dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class MatchRequestDto {
+
+    private int id;
+    private String firstPlayerName;
+    private String secondPlayerName;
+    private String score;
+    private String winnerName;
+
+}
