@@ -295,4 +295,14 @@ a {
     background: rgba(108, 218, 202, 0.7);
 }
 
+.winner-block {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.winner-score {
+    font-size: 18px;
+    text-align: center;
+    padding-bottom: 64px;
+}
 
