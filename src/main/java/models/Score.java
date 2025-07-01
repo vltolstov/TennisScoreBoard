@@ -17,5 +17,18 @@ public class Score {
     private int secondPlayerSets;
     private int secondPlayerGames;
     private int secondPlayerPoints;
+    private boolean deuce;
+    private boolean deuceGame;
+    private boolean tieBreak;
+
+    public void initializePlayersPoints(){
+        setFirstPlayerPoints(0);
+        setSecondPlayerPoints(0);
+    }
+
+    public void initializePlayersGames(){
+        setFirstPlayerGames(0);
+        setSecondPlayerGames(0);
+    }
 
 }
