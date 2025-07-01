@@ -31,4 +31,8 @@ public class Score {
         setSecondPlayerGames(0);
     }
 
+    public String getSetsScore(){
+        return getFirstPlayerSets() + " - " + getSecondPlayerSets();
+    }
+
 }
