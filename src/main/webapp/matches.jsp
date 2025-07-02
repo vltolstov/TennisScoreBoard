@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -17,7 +18,7 @@
             <p class="page-header">Итоги матчей</p>
             <div class="main-block">
                 <div class="player-filter-form-wrapper">
-                    <form class="filter-form">
+                    <form class="filter-form" method="POST" action="matches">
                         <label for="search-player-name">Поиск по имени игрока:</label>
                         <input type="text" name="search-player-name" id="search-player-name" placeholder="Введите имя">
                         <button class="search-button" type="submit">Найти</button>
@@ -32,13 +33,15 @@
                             <th>Счет</th>
                             <th>Победитель</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Player1</td>
-                            <td>Player2</td>
-                            <td>2-0</td>
-                            <td>Player1</td>
-                        </tr>
+                        <c:forEach var="match" items="${matches}">
+                            <tr>
+                                <td>${match.id}</td>
+                                <td>${match.firstPlayer.name}</td>
+                                <td>${match.secondPlayer.name}</td>
+                                <td>${match.score.setsScore}</td>
+                                <td>${match.winner.name}</td>
+                            </tr>
+                        </c:forEach>
                     </table>
                 </div>
                 <nav>
