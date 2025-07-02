@@ -16,12 +16,10 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "player1")
     @ManyToOne
     @JoinColumn(name = "player1", referencedColumnName = "id")
     private Player firstPlayer;
 
-    @Column(name = "player2")
     @ManyToOne
     @JoinColumn(name = "player2", referencedColumnName = "id")
     private Player secondPlayer;
