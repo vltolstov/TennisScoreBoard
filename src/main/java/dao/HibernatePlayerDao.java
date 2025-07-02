@@ -15,7 +15,7 @@ import java.util.Optional;
 public class HibernatePlayerDao implements PlayerDao {
 
     @Override
-    public List findAll() {
+    public List<Player> findAll() {
 
         List<Player> players = new ArrayList<>();
 
