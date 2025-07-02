@@ -1,6 +1,7 @@
 package utils;
 
 import dto.NewMatchRequestDto;
+validateimport exceptions.PageNumberException;
 import exceptions.PlayerNameException;
 
 public class ValidationUtils {
@@ -19,4 +20,11 @@ public class ValidationUtils {
         }
 
     }
+
+    public static void validate(String page){
+        if(page != null && Integer.parseInt(page) < 0){
+            throw new PageNumberException("Page number can not be less than 1");
+        }
+    }
+
 }
