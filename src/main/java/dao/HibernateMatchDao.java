@@ -52,6 +52,22 @@ public class HibernateMatchDao implements MatchDao {
         }
     }
 
+    @Override
+    public List<Match> findByPlayer(Player player) {
+        List<Match> matches = new ArrayList<>();
+
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            matches = session
+                    .createQuery("from Match match where match.firstPlayer = :player or match.secondPlayer = :player", Match.class)
+                    .setParameter("player", player)
+                    .list();
+        } catch (Exception e) {
+            throw new DatabaseOperationException("Could not find matches for player " + player.getName());
+        }
+
+        return matches;
+    }
+
     private void transactionSafeRollBack(Transaction transaction){
         try {
             if (transaction != null) transaction.rollback();
