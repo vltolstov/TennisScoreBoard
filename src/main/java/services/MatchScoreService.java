@@ -117,12 +117,4 @@ public class MatchScoreService {
 
     }
 
-    public void setWinner(Score score, Match match) {
-        if(score.getFirstPlayerSets() == 2) {
-            match.setWinner(match.getFirstPlayer());
-        }
-        if(score.getSecondPlayerSets() == 2) {
-            match.setWinner(match.getSecondPlayer());
-        }
-    }
 }
