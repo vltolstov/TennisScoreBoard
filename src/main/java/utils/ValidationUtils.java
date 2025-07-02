@@ -1,7 +1,7 @@
 package utils;
 
 import dto.NewMatchRequestDto;
-validateimport exceptions.PageNumberException;
+import exceptions.PageNumberException;
 import exceptions.PlayerNameException;
 
 public class ValidationUtils {
