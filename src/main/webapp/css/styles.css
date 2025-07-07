@@ -264,6 +264,14 @@ a {
     text-align: center;
 }
 
+.matches-not-found-message {
+    padding: 20px 0;
+}
+
+.matches-not-found-message p {
+    text-align: center;
+}
+
 .match-commands {
     border-top: 1px solid #EBEBEB;
     padding: 15px 0px;
