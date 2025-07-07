@@ -99,7 +99,7 @@ public class MatchScoreServiceTest {
         assertEquals(score.getSecondPlayerGames(), 0);
         assertEquals(score.getFirstPlayerPoints(), 0);
         assertEquals(score.getSecondPlayerPoints(), 0);
-        assertEquals(score.isDeuce(), false);
+        assertFalse(score.isDeuce());
     }
 
     @Test
@@ -114,6 +114,141 @@ public class MatchScoreServiceTest {
         assertEquals(score.getSecondPlayerGames(), 0);
         assertEquals(score.getFirstPlayerPoints(), 0);
         assertEquals(score.getSecondPlayerPoints(), 0);
-        assertEquals(score.isDeuce(), false);
+        assertFalse(score.isDeuce());
     }
+
+    @Test
+    @DisplayName("Победа в сете при счете 6 - 4 по геймам")
+    public void testCalculateSetWinForNormalGameScore(){
+        winnerId = firstPlayerId;
+        score.setFirstPlayerPoints(40);
+        score.setFirstPlayerGames(5);
+        score.setSecondPlayerGames(4);
+
+        matchScoreService.scoreCalculate(score, firstPlayerId, secondPlayerId, winnerId);
+        assertEquals(score.getFirstPlayerSets(), 1);
+        assertEquals(score.getSecondPlayerSets(), 0);
+        assertEquals(score.getFirstPlayerGames(), 0);
+        assertEquals(score.getSecondPlayerGames(), 0);
+    }
+
+    @Test
+    @DisplayName("Установка ничьи 5 - 5")
+    public void testSetDeuceForGame(){
+        winnerId = firstPlayerId;
+        score.setFirstPlayerPoints(40);
+        score.setFirstPlayerGames(4);
+        score.setSecondPlayerGames(5);
+
+        matchScoreService.scoreCalculate(score, firstPlayerId, secondPlayerId, winnerId);
+        assertTrue(score.isDeuceGame());
+    }
+
+    @Test
+    @DisplayName("Победа в сете при счете 7 - 5 по геймам")
+    public void testCalculateSetWinForDeuceGameScore(){
+        winnerId = firstPlayerId;
+        score.setFirstPlayerPoints(40);
+        score.setFirstPlayerGames(6);
+        score.setSecondPlayerGames(5);
+        score.setDeuceGame(true);
+
+        matchScoreService.scoreCalculate(score, firstPlayerId, secondPlayerId, winnerId);
+        assertEquals(score.getFirstPlayerSets(), 1);
+        assertEquals(score.getSecondPlayerSets(), 0);
+        assertEquals(score.getFirstPlayerGames(), 0);
+        assertEquals(score.getSecondPlayerGames(), 0);
+        assertEquals(score.isDeuceGame(), false);
+    }
+
+    @Test
+    @DisplayName("Установка тай брейка при счете 6 - 6 по геймам")
+    public void testSetTieBreak(){
+        winnerId = secondPlayerId;
+        score.setSecondPlayerPoints(40);
+        score.setFirstPlayerGames(6);
+        score.setSecondPlayerGames(5);
+        score.setDeuceGame(true);
+
+        matchScoreService.scoreCalculate(score, firstPlayerId, secondPlayerId, winnerId);
+        assertTrue(score.isTieBreak());
+    }
+
+    @Test
+    @DisplayName("Подсчет очков по 1 при тай брейке")
+    public void testCalculatePointsIfTieBreak(){
+        winnerId = firstPlayerId;
+        score.setFirstPlayerPoints(3);
+        score.setDeuce(true);
+        score.setDeuceGame(true);
+        score.setTieBreak(true);
+
+        matchScoreService.scoreCalculate(score, firstPlayerId, secondPlayerId, winnerId);
+        assertEquals(score.getFirstPlayerPoints(), 4);
+    }
+
+    @Test
+    @DisplayName("Победа в гейме при тай брейке со счетом по очкам 7 - 1")
+    public void testCalculateGameWinIfTieBreakHasNormalScore(){
+        winnerId = firstPlayerId;
+        score.setFirstPlayerPoints(6);
+        score.setSecondPlayerPoints(1);
+        score.setFirstPlayerGames(6);
+        score.setSecondPlayerGames(6);
+        score.setDeuce(true);
+        score.setDeuceGame(true);
+        score.setTieBreak(true);
+
+        matchScoreService.scoreCalculate(score, firstPlayerId, secondPlayerId, winnerId);
+        assertEquals(score.getFirstPlayerSets(), 1);
+        assertTrue(score.getSecondPlayerGames() <= 4, "Разница в счете больше двух очков");
+        assertEquals(score.getSecondPlayerSets(), 0);
+    }
+
+    @Test
+    @DisplayName("Подсчет в тайбрейке со счетом более 7 - 7")
+    public void testCalculatePointsIfTieBreakHasOverScore(){
+        winnerId = firstPlayerId;
+        score.setFirstPlayerPoints(7);
+        score.setSecondPlayerPoints(7);
+        score.setFirstPlayerGames(6);
+        score.setSecondPlayerGames(6);
+        score.setDeuce(true);
+        score.setDeuceGame(true);
+        score.setTieBreak(true);
+
+        matchScoreService.scoreCalculate(score, firstPlayerId, secondPlayerId, winnerId);
+        assertEquals(score.getFirstPlayerPoints(), 8);
+        assertEquals(score.getSecondPlayerPoints(), 7);
+        assertEquals(score.getFirstPlayerGames(), 6);
+        assertEquals(score.getSecondPlayerGames(), 6);
+        assertEquals(score.getSecondPlayerSets(), 0);
+        assertEquals(score.getSecondPlayerSets(), 0);
+    }
+
+    @Test
+    @DisplayName("Победа в тай брейке при счете более 7 - 7")
+    public void testCalculateSetWinIfTieBreakHasOverScore(){
+        winnerId = firstPlayerId;
+        score.setFirstPlayerPoints(8);
+        score.setSecondPlayerPoints(7);
+        score.setFirstPlayerGames(6);
+        score.setSecondPlayerGames(6);
+        score.setDeuce(true);
+        score.setDeuceGame(true);
+        score.setTieBreak(true);
+
+        matchScoreService.scoreCalculate(score, firstPlayerId, secondPlayerId, winnerId);
+        assertEquals(score.getFirstPlayerPoints(), 0);
+        assertEquals(score.getSecondPlayerPoints(), 0);
+        assertEquals(score.getFirstPlayerGames(), 0);
+        assertEquals(score.getSecondPlayerGames(), 0);
+        assertEquals(score.getFirstPlayerSets(), 1);
+        assertEquals(score.getSecondPlayerSets(), 0);
+        assertFalse(score.isDeuce());
+        assertFalse(score.isDeuceGame());
+        assertFalse(score.isTieBreak());
+    }
+
+
 }
