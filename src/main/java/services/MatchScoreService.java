@@ -1,7 +1,5 @@
 package services;
 
-import models.Match;
-import models.Player;
 import models.Score;
 
 public class MatchScoreService {

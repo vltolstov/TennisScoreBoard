@@ -9,16 +9,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.Match;
-import models.Player;
 import models.Score;
-import org.modelmapper.ModelMapper;
 import services.MatchScoreService;
 import services.MatchService;
 import services.OngoingMatchesService;
-import utils.MappingUtils;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.UUID;
 
 import static utils.MappingUtils.convertToDto;

@@ -4,7 +4,6 @@ import dao.HibernatePlayerDao;
 import models.Player;
 
 import java.util.List;
-import java.util.Optional;
 
 public class ManualAddPlayerExample {
 

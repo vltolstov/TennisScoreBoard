@@ -2,12 +2,10 @@ package dao;
 
 import exceptions.DatabaseOperationException;
 import hibernate.HibernateUtils;
-import jakarta.persistence.PersistenceException;
 import models.Match;
 import models.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.exception.ConstraintViolationException;
 
 import java.util.ArrayList;
 import java.util.List;
