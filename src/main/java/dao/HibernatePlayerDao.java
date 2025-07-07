@@ -28,12 +28,21 @@ public class HibernatePlayerDao implements PlayerDao {
         return players;
     }
 
+//    @Override
+//    public Optional<Player> findById(Integer id) {
+//        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+//            return Optional.ofNullable(session.find(Player.class, id));
+//        } catch (Exception e) {
+//            throw new DatabaseOperationException("Could not find player with id " + id);
+//        }
+//    }
+
     @Override
-    public Optional<Player> findById(Integer id) {
+    public Optional<Player> findByName(String name) {
         try (Session session = HibernateUtils.getSessionFactory().openSession()) {
-            return Optional.ofNullable(session.find(Player.class, id));
+            return Optional.ofNullable(session.find(Player.class, name));
         } catch (Exception e) {
-            throw new DatabaseOperationException("Could not find player with id " + id);
+            throw new DatabaseOperationException("Could not find player with name " + name);
         }
     }
 
