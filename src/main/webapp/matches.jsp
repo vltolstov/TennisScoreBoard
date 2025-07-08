@@ -20,8 +20,8 @@
         <div class="main-block">
             <div class="player-filter-form-wrapper">
                 <form class="filter-form" method="POST" action="matches">
-                    <label for="search-player-name">Поиск по имени игрока:</label>
-                    <input type="text" name="search-player-name" id="search-player-name" placeholder="Введите имя">
+                    <label for="filter-by-player-name">Поиск по имени игрока:</label>
+                    <input type="text" name="filter-by-player-name" id="filter-by-player-name" placeholder="Введите имя">
                     <button class="search-button" type="submit">Найти</button>
                 </form>
             </div>
