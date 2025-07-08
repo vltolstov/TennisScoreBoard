@@ -15,6 +15,7 @@ import models.Player;
 import utils.ValidationUtils;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,14 +41,15 @@ public class MatchesServlet extends HttpServlet {
             pageNumber = Integer.parseInt(page);
         }
 
-        String playerName = request.getParameter("filter_by_player_name");
+        String playerName = request.getParameter("filter-by-player-name");
         if(playerName == null) {
             matches = matchDao.findAll();
         } else {
-            Optional<Player> optionalPlayer = Optional.empty();
-            optionalPlayer = playerDao.findByName(playerName);
-            Player player = optionalPlayer.orElseThrow(() -> new PlayerNameException("Player not found"));
-            matches = matchDao.findByPlayer(player);
+            Optional<Player> player = Optional.empty();
+            player = playerDao.findByName(playerName);
+            matches = player
+                    .map(matchDao::findByPlayer)
+                    .orElse(Collections.emptyList());
         }
 
         request.setAttribute("matches", matches);
@@ -56,8 +58,8 @@ public class MatchesServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String playerName = request.getParameter("filter_by_player_name");
+        String playerName = request.getParameter("filter-by-player-name");
 
-        response.sendRedirect("matches" + "?filter_by_player_name=" + playerName);
+        response.sendRedirect("matches" + "?filter-by-player-name=" + playerName);
     }
 }
