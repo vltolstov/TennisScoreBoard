@@ -40,7 +40,11 @@ public class HibernatePlayerDao implements PlayerDao {
     @Override
     public Optional<Player> findByName(String name) {
         try (Session session = HibernateUtils.getSessionFactory().openSession()) {
-            return Optional.ofNullable(session.find(Player.class, name));
+            Player player = session
+                    .createQuery("FROM Player WHERE name = :name", Player.class)
+                    .setParameter("name", name)
+                    .uniqueResult();
+            return Optional.ofNullable(player);
         } catch (Exception e) {
             throw new DatabaseOperationException("Could not find player with name " + name);
         }
