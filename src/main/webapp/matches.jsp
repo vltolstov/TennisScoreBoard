@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -21,7 +21,8 @@
             <div class="player-filter-form-wrapper">
                 <form class="filter-form" method="POST" action="matches">
                     <label for="filter-by-player-name">Поиск по имени игрока:</label>
-                    <input type="text" name="filter-by-player-name" id="filter-by-player-name" placeholder="Введите имя">
+                    <input type="text" name="filter-by-player-name" id="filter-by-player-name"
+                           placeholder="Введите имя">
                     <button class="search-button" type="submit">Найти</button>
                 </form>
             </div>
@@ -46,24 +47,39 @@
                         </tr>
                     </c:forEach>
                 </table>
+
+                </c:when>
+                <c:otherwise>
+                    <div class="matches-not-found-message">
+                        <p>Матчи не найдены</p>
+                    </div>
+                </c:otherwise>
+                </c:choose>
             </div>
-            </c:when>
-            <c:otherwise>
-                <div class="matches-not-found-message">
-                    <p>Матчи не найдены</p>
-                </div>
-            </c:otherwise>
-            </c:choose>
+
             <nav>
                 <div class="pagination">
-                    <a href="#">Назад</a>
-                    <span>1</span>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">Вперед</a>
+                    <c:if test="${currentPage > 1}">
+                        <a href="matches?page=${currentPage - 1}">Назад</a>
+                    </c:if>
+
+                    <c:forEach begin="1" end="${totalPages}" var="i">
+                        <c:choose>
+                            <c:when test="${i == currentPage}">
+                                <span>${i}</span>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="matches?page=${i}">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+
+                    <c:if test="${currentPage < totalPages}">
+                        <a href="matches?page=${currentPage + 1}">Вперед</a>
+                    </c:if>
                 </div>
             </nav>
+
         </div>
     </div>
 </div>
