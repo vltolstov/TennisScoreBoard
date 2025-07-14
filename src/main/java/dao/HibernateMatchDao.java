@@ -6,32 +6,27 @@ import models.Match;
 import models.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class HibernateMatchDao implements MatchDao {
 
     @Override
-    public List<Match> findAll() {
-        List<Match> matches = new ArrayList<>();
-
+    public List<Match> findAll(int page, int pageSize) {
         try (Session session = HibernateUtils.getSessionFactory().openSession()) {
-            matches = session.createQuery("from Match").list();
+
+            String hql = "FROM Match match";
+            Query<Match> query = session.createQuery(hql, Match.class);
+
+            query.setFirstResult((page - 1) * pageSize);
+            query.setMaxResults(pageSize);
+
+            return query.list();
+
         } catch (Exception e) {
             throw new DatabaseOperationException("Could not find all matches");
-        }
-
-        return matches;
-    }
-
-    @Override
-    public Optional<Match> findById(Integer id) {
-        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
-            return Optional.ofNullable(session.find(Match.class, id));
-        } catch (Exception e) {
-            throw new DatabaseOperationException("Could not find match with id " + id);
         }
     }
 
@@ -51,19 +46,21 @@ public class HibernateMatchDao implements MatchDao {
     }
 
     @Override
-    public List<Match> findByPlayer(Player player) {
-        List<Match> matches = new ArrayList<>();
-
+    public List<Match> findByPlayer(Player player, int page, int pageSize) {
         try (Session session = HibernateUtils.getSessionFactory().openSession()) {
-            matches = session
-                    .createQuery("from Match match where match.firstPlayer = :player or match.secondPlayer = :player", Match.class)
-                    .setParameter("player", player)
-                    .list();
+
+            String hql = "from Match match where match.firstPlayer = :player or match.secondPlayer = :player";
+            Query<Match> query = session.createQuery(hql, Match.class);
+
+            query.setParameter("player", player);
+            query.setFirstResult((page - 1) * pageSize);
+            query.setMaxResults(pageSize);
+
+            return query.list();
+
         } catch (Exception e) {
             throw new DatabaseOperationException("Could not find matches for player " + player.getName());
         }
-
-        return matches;
     }
 
     private void transactionSafeRollBack(Transaction transaction){
@@ -71,6 +68,27 @@ public class HibernateMatchDao implements MatchDao {
             if (transaction != null) transaction.rollback();
         } catch (Exception e) {
             System.out.println("Rollback failed" + e.getMessage());
+        }
+    }
+
+    @Override
+    public Long getTotalMatchesCount() {
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            String hql = "SELECT COUNT(match) FROM Match match";
+            Query<Long> query = session.createQuery(hql, Long.class);
+
+            return query.uniqueResult();
+        }
+    }
+
+    @Override
+    public java.lang.Long getTotalMatchesCountByPlayer(Player player) {
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            String hql = "SELECT COUNT(match) FROM Match match WHERE match.firstPlayer = :player OR match.secondPlayer = :player";
+            Query<Long> query = session.createQuery(hql, Long.class);
+            query.setParameter("player", player);
+
+            return query.uniqueResult();
         }
     }
 }

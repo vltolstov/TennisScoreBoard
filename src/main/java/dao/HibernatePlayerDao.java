@@ -15,29 +15,6 @@ import java.util.Optional;
 public class HibernatePlayerDao implements PlayerDao {
 
     @Override
-    public List<Player> findAll() {
-
-        List<Player> players = new ArrayList<>();
-
-        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
-            players = session.createQuery("from Player").list();
-        } catch (Exception e) {
-            throw new DatabaseOperationException("Could not find all players");
-        }
-
-        return players;
-    }
-
-//    @Override
-//    public Optional<Player> findById(Integer id) {
-//        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
-//            return Optional.ofNullable(session.find(Player.class, id));
-//        } catch (Exception e) {
-//            throw new DatabaseOperationException("Could not find player with id " + id);
-//        }
-//    }
-
-    @Override
     public Optional<Player> findByName(String name) {
         try (Session session = HibernateUtils.getSessionFactory().openSession()) {
             Player player = session
