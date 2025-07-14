@@ -16,6 +16,8 @@ import services.MatchPaginationService;
 import utils.ValidationUtils;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -64,7 +66,8 @@ public class MatchesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String playerName = request.getParameter("filter-by-player-name");
+        String encodedPlayerName = URLEncoder.encode(playerName, StandardCharsets.UTF_8);
 
-        response.sendRedirect("matches" + "?filter-by-player-name=" + playerName);
+        response.sendRedirect("matches" + "?filter-by-player-name=" + encodedPlayerName);
     }
 }

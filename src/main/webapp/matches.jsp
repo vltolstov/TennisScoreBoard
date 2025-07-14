@@ -19,7 +19,7 @@
         <p class="page-header">Итоги матчей</p>
         <div class="main-block">
             <div class="player-filter-form-wrapper">
-                <form class="filter-form" method="POST" action="matches">
+                <form class="filter-form" method="POST" action="matches" accept-charset="UTF-8">
                     <label for="filter-by-player-name">Поиск по имени игрока:</label>
                     <input type="text" name="filter-by-player-name" id="filter-by-player-name"
                            placeholder="Введите имя">

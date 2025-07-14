@@ -20,7 +20,7 @@
             <p class="error"><%= error %></p>
             <% } %>
             <div class="main-block">
-                <form method="POST" action="new-match">
+                <form method="POST" action="new-match" accept-charset="UTF-8">
 
                     <div class="form-element-wrapper">
                         <label for="first-player-name">Игрок №1</label>
