@@ -53,7 +53,7 @@ public class MatchScoreServlet extends HttpServlet {
 
         if(matchService.checkGameOver(match)){
 
-            //OngoingMatchesService.removeMatch(uuid);
+            OngoingMatchesService.removeMatch(uuid);
             matchService.setWinner(score, match);
             matchDao.save(match);
 
