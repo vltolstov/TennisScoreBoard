@@ -19,6 +19,10 @@ public class ValidationUtils {
             throw new PlayerNameException("Player №2 name can not be blank");
         }
 
+        if (!firstPlayerName.matches("[a-zA-Z0-9а-яА-ЯёЁ]+") || !secondPlayerName.matches("[a-aA-Z0-9а-яА-ЯёЁ]+")) {
+            throw new PlayerNameException("Player name must contain only letters and digits");
+        }
+
     }
 
     public static void validate(String page){
