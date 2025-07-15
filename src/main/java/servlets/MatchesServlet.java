@@ -38,7 +38,7 @@ public class MatchesServlet extends HttpServlet {
 
         ValidationUtils.validate(page);
 
-        if(page == null) {
+        if(page == null || "0".equals(page)) {
             pageNumber = DEFAULT_PAGE_NUMBER;
         } else {
             pageNumber = Integer.parseInt(page);
