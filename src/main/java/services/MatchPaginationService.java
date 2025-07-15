@@ -4,6 +4,7 @@ import dao.MatchDao;
 import dto.PaginationResultDto;
 import models.Match;
 import models.Player;
+import utils.ValidationUtils;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class MatchPaginationService {
         List<Match> matches = matchDAO.findAll(page, pageSize);
         int totalPages = (int) Math.ceil((double) totalMatches / pageSize);
 
+        ValidationUtils.validate(page, totalPages);
+
         return new PaginationResultDto<>(matches, page, totalPages);
     }
 
@@ -26,6 +29,8 @@ public class MatchPaginationService {
         Long totalMatches = matchDAO.getTotalMatchesCountByPlayer(player);
         List<Match> matches = matchDAO.findByPlayer(player, page, pageSize);
         int totalPages = (int) Math.ceil((double) totalMatches / pageSize);
+
+        ValidationUtils.validate(page, totalPages);
 
         return new PaginationResultDto<>(matches, page, totalPages);
     }
