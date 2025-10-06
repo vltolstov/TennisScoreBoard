@@ -18,7 +18,6 @@ public class EncodingFilter extends HttpFilter {
             throws IOException, ServletException {
 
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
 
         filterChain.doFilter(request, response);
